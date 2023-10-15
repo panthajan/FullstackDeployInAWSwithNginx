@@ -101,7 +101,7 @@ sudo service nginx restart
 
 This configuration will route requests to `students.poridhi.com` and `api.students.poridhi.com` to the corresponding containers running on the Frontend & backend Container. 
 
-## To set up a Docker container running Nginx with the previously mentioned Nginx configuration, we can create a Dockerfile. Here's a Dockerfile for the scenario you described:
+## To set up a Docker container running Nginx with the previously mentioned Nginx configuration, we can create a Dockerfile. Here's a Dockerfile for the scenario we described:
 
 ```Dockerfile
 # Use an official Nginx image as the base image
