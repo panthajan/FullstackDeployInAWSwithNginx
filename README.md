@@ -7,6 +7,7 @@ Requirement:
 
 
 Proposed Solution: 
+
 Assuming we have three servers in AWS with two public subnets and one private subnet:
 
     Public Subnet 1:
