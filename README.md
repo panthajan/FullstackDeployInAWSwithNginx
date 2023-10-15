@@ -67,11 +67,11 @@ server {
 }
 ```
 
-Replace `<frontend_container_port>` and `<backend_container_port>` with the actual ports that your frontend and backend containers are listening on.
+## Replace `<frontend_container_port>` and `<backend_container_port>` with the actual ports that your frontend and backend containers are listening on.
 
 **Main Nginx Configuration:**
 
-Edit your main Nginx configuration file, typically located at `/etc/nginx/nginx.conf` or `/etc/nginx/sites-available/default`. Include the site-specific configuration files like this:
+Edit the main Nginx configuration file, typically located at `/etc/nginx/nginx.conf` or `/etc/nginx/sites-available/default`. Include the site-specific configuration files like this:
 
 ```nginx
 include /etc/nginx/sites-available/students.poridhi.com;
