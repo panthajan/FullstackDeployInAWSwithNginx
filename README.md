@@ -147,7 +147,7 @@ In this Dockerfile:
 6. Port 80 is exposed to allow external access to the Nginx web server.
 7. Finally, we start Nginx in the foreground using `CMD` with the "daemon off;" option to keep the container running.
 
-Build your Docker image using this Dockerfile:
+Build  Docker image using this Dockerfile:
 
 ```bash
 docker build -t my-nginx-image .
