@@ -14,21 +14,21 @@
 Assuming we have three servers in AWS with two public subnets and one private subnet:
 
     Public Subnet 1:
-        Subnet ID: subnet-1 (example)
+        Subnet ID: subnet-1
         IP Range: 10.0.1.0/24
         Available IP Addresses: 10.0.1.0 - 10.0.1.255
         Assign this subnet to the EC2 instance running Nginx.
         Ngnix EC2 IP: 10.0.1.5/24
 
     Public Subnet 2:
-        Subnet ID: subnet-2 (example)
+        Subnet ID: subnet-2
         IP Range: 10.0.2.0/24
         Available IP Addresses: 10.0.2.0 - 10.0.2.255
         Assign this subnet to an EC2 instance for other purposes.
         Node EC2 IP: 10.0.2.5/24
 
     Private Subnet:
-        Subnet ID: subnet-3 (example)
+        Subnet ID: subnet-3
         IP Range: 10.0.3.0/24
         Available IP Addresses: 10.0.3.0 - 10.0.3.255
         Assign this subnet to the EC2 instance running PostgreSQL.
