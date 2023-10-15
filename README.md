@@ -1,6 +1,6 @@
 # FullstackDeployInAWSwithNginx
 
-# Requirement: 
+# Requirement:
 
 ধরেন আপনার কাছে তিনটা সারভার আছে AWS এ। দুইটা সারভার পাবলিক সাবনেটে একটা প্রাইভেট সাবনেটে। যে সারভারটা প্রাইভেট সাবনেটে আছে সেটাতে আপনি postgres কনফিগার করলেন। আর পাবলিক সাবনেটের একটা সারভারে nginx ডেপ্লয় করলেন Docker দিয়ে। আরেকটা সারভারে দুইটা কন্টেইনার আছে। একটা হলো ফ্রন্টএন্ড কন্টেইনার ( React) আর আরেকটা হলো ব্যাকেন্ড কন্টেইনার (python অথবা node)। আপনাকে কিভাবে nginx কনফিগ লিখতে হবে যাতে করে কেউ http://students.poridhi.com এই URL এ রিকোয়েস্ট পাঠালে ফ্রন্ডএন্ড কন্টেইনারে যায়। http://api.students.poridhi.com এই URL খুজলে Backend কন্টেইনারে যাবে।
 
@@ -8,8 +8,7 @@
 
 ![image](https://github.com/panthajan/FullstackDeployInAWSwithNginx/assets/19544130/be5bc0e4-59eb-42bd-98bc-214325f690ab)
 
-
-# Proposed Solution: 
+# Proposed Solution:
 
 Assuming we have three servers in AWS with two public subnets and one private subnet:
 
@@ -71,7 +70,7 @@ server {
 }
 ```
 
- Replace `<frontend_container_port>` and `<backend_container_port>` with the actual ports that your frontend and backend containers are listening on.
+Replace `<frontend_container_port>` and `<backend_container_port>` with the actual ports that your frontend and backend containers are listening on.
 
 **Main Nginx Configuration:**
 
@@ -99,11 +98,12 @@ Finally, restart Nginx to apply the configuration changes:
 sudo service nginx restart
 ```
 
-This configuration will route requests to `students.poridhi.com` and `api.students.poridhi.com` to the corresponding containers running on the Frontend & backend Container. 
+This configuration will route requests to `students.poridhi.com` and `api.students.poridhi.com` to the corresponding containers running on the Frontend & backend Container.
 
 ## To set up a Docker container running Nginx with the previously mentioned Nginx configuration, we can create a Dockerfile. Here's a Dockerfile for the scenario we described:
 
 ```bash
+
 #Use an official Nginx image as the base image
 
 FROM nginx
@@ -134,6 +134,7 @@ EXPOSE 80
 #Start Nginx when the container is launched
 
 CMD ["nginx", "-g", "daemon off;"]
+
 ```
 
 In this Dockerfile:
@@ -158,4 +159,4 @@ Run the Docker container from the image:
 docker run -d -p 80:80 my-nginx-image
 ```
 
-This will run Nginx inside a Docker container with your custom configuration. The `-p` flag maps port 80 in the container to port 80 on your host machine so that you can access the Nginx server in your web browser at http://localhost.
+This will run Nginx inside a Docker container with your custom configuration. The `-p` flag maps port 80 in the container to port 80 on your host machine so that you can access the Nginx server in your web browser at http://students.poridhi.com.
