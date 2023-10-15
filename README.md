@@ -103,28 +103,28 @@ This configuration will route requests to `students.poridhi.com` and `api.studen
 
 ## To set up a Docker container running Nginx with the previously mentioned Nginx configuration, we can create a Dockerfile. Here's a Dockerfile for the scenario we described:
 
-# Use an official Nginx image as the base image
+#Use an official Nginx image as the base image
 FROM nginx
 
-# Remove the default Nginx configuration
+#Remove the default Nginx configuration
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy your Nginx site-specific configuration files to the container
+#Copy your Nginx site-specific configuration files to the container
 COPY students.poridhi.com /etc/nginx/sites-available/students.poridhi.com
 COPY api.students.poridhi.com /etc/nginx/sites-available/api.students.poridhi.com
 
-# Create symbolic links for the sites in the sites-enabled directory
+#Create symbolic links for the sites in the sites-enabled directory
 RUN ln -s /etc/nginx/sites-available/students.poridhi.com /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/api.students.poridhi.com /etc/nginx/sites-enabled/
 
-# Include your site-specific configurations in the main Nginx configuration
+#Include your site-specific configurations in the main Nginx configuration
 RUN echo "include /etc/nginx/sites-available/students.poridhi.com;" > /etc/nginx/conf.d/students.poridhi.com
 RUN echo "include /etc/nginx/sites-available/api.students.poridhi.com;" > /etc/nginx/conf.d/api.students.poridhi.com
 
-# Expose port 80 for Nginx
+#Expose port 80 for Nginx
 EXPOSE 80
 
-# Start Nginx when the container is launched
+#Start Nginx when the container is launched
 CMD ["nginx", "-g", "daemon off;"]
 
 
