@@ -100,3 +100,50 @@ sudo service nginx restart
 ```
 
 This configuration will route requests to `students.poridhi.com` and `api.students.poridhi.com` to the corresponding containers running on the Frontend & backend Container. 
+
+## To set up a Docker container running Nginx with the previously mentioned Nginx configuration, we can create a Dockerfile. Here's a Dockerfile for the scenario you described:
+
+```Dockerfile
+# Use an official Nginx image as the base image
+FROM nginx
+
+# Remove the default Nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy  Nginx site-specific configuration files to the container
+COPY students.poridhi.com /etc/nginx/sites-available/students.poridhi.com
+COPY api.students.poridhi.com /etc/nginx/sites-available/api.students.poridhi.com
+
+# Create symbolic links for the sites in the sites-enabled directory
+RUN ln -s /etc/nginx/sites-available/students.poridhi.com /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/api.students.poridhi.com /etc/nginx/sites-enabled/
+
+# Expose port 80 for Nginx
+EXPOSE 80
+
+# Start Nginx when the container is launched
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+In this Dockerfile:
+
+1. We start with an official Nginx base image.
+2. The default Nginx configuration is removed since we'll use our custom configurations.
+3. We copy the site-specific Nginx configuration files (`students.poridhi.com` and `api.students.poridhi.com`) into the container's `/etc/nginx/sites-available/` directory.
+4. We create symbolic links to enable the sites in the `sites-enabled` directory.
+5. Port 80 is exposed to allow external access to the Nginx web server.
+6. Finally, we start Nginx in the foreground using `CMD` with the "daemon off;" option to keep the container running.
+
+Build your Docker image using this Dockerfile:
+
+```bash
+docker build -t my-nginx-image .
+```
+
+Run the Docker container from the image:
+
+```bash
+docker run -d -p 80:80 my-nginx-image
+```
+
+This will run Nginx inside a Docker container with your custom configuration. The `-p` flag maps port 80 in the container to port 80 on your host machine so that you can access the Nginx server in your web browser at http://localhost.
