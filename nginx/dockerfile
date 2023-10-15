@@ -1,0 +1,27 @@
+# Use an official Nginx image as the base image
+FROM nginx
+RUN apt update
+RUN apt install net-tools
+RUN apt install telnet -y
+RUN apt install vim-tiny -y
+
+# Remove the default Nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy your Nginx site-specific configuration files to the container
+COPY students.poridhi.com /etc/nginx/sites-available/students.poridhi.com
+COPY api.students.poridhi.com /etc/nginx/sites-available/api.students.poridhi.com
+
+# Create symbolic links for the sites in the sites-enabled directory
+RUN ln -s /etc/nginx/sites-available/students.poridhi.com /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/api.students.poridhi.com /etc/nginx/sites-enabled/
+
+# Include your site-specific configurations in the main Nginx configuration
+RUN echo "include /etc/nginx/sites-available/students.poridhi.com;" > /etc/nginx/conf.d/students.poridhi.com
+RUN echo "include /etc/nginx/sites-available/api.students.poridhi.com;" > /etc/nginx/conf.d/api.students.poridhi.com
+
+# Expose port 80 for Nginx
+EXPOSE 80
+
+# Start Nginx when the container is launched
+CMD ["nginx", "-g", "daemon off;"]
