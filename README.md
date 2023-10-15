@@ -103,6 +103,7 @@ This configuration will route requests to `students.poridhi.com` and `api.studen
 
 ## To set up a Docker container running Nginx with the previously mentioned Nginx configuration, we can create a Dockerfile. Here's a Dockerfile for the scenario we described:
 
+```bash
 #Use an official Nginx image as the base image
 
 FROM nginx
@@ -133,7 +134,7 @@ EXPOSE 80
 #Start Nginx when the container is launched
 
 CMD ["nginx", "-g", "daemon off;"]
-
+```
 
 In this Dockerfile:
 
