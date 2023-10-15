@@ -4,6 +4,10 @@
 
 ধরেন আপনার কাছে তিনটা সারভার আছে AWS এ। দুইটা সারভার পাবলিক সাবনেটে একটা প্রাইভেট সাবনেটে। যে সারভারটা প্রাইভেট সাবনেটে আছে সেটাতে আপনি postgres কনফিগার করলেন। আর পাবলিক সাবনেটের একটা সারভারে nginx ডেপ্লয় করলেন Docker দিয়ে। আরেকটা সারভারে দুইটা কন্টেইনার আছে। একটা হলো ফ্রন্টএন্ড কন্টেইনার ( React) আর আরেকটা হলো ব্যাকেন্ড কন্টেইনার (python অথবা node)। আপনাকে কিভাবে nginx কনফিগ লিখতে হবে যাতে করে কেউ http://students.poridhi.com এই URL এ রিকোয়েস্ট পাঠালে ফ্রন্ডএন্ড কন্টেইনারে যায়। http://api.students.poridhi.com এই URL খুজলে Backend কন্টেইনারে যাবে।
 
+# Proposed Diagram:
+
+![image](https://github.com/panthajan/FullstackDeployInAWSwithNginx/assets/19544130/be5bc0e4-59eb-42bd-98bc-214325f690ab)
+
 
 # Proposed Solution: 
 
