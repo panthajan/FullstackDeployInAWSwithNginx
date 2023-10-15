@@ -1,5 +1,4 @@
 # FullstackDeployInAWSwithNginx
-Fullstack Deployment In AWS with Nginx through Domain &amp; Subdomain URL
 
 Requirement: 
 
@@ -34,7 +33,7 @@ Assuming we have three servers in AWS with two public subnets and one private su
 For the DNS configuration, we need to work on our domain registrar's DNS settings, we need to create A records pointing to the Elastic IP addresses or the public IP addresses of your instances. Here's an example:
 
     students.poridhi.com A record points to the Elastic IP of the Nginx server in the first public subnet.
-    api.students.poridhi.com A record points to the Elastic IP of the other public-facing server in the second public subnet.
+    api.students.poridhi.com A record points to the Elastic IP of the same Nginx server in the first public subnet.
 
 Here's the Nginx configuration and steps based on the scenario:
 
