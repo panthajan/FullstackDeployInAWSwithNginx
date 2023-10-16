@@ -112,6 +112,9 @@ FROM nginx
 
 RUN rm /etc/nginx/conf.d/default.conf
 
+# Create the sites-enabled directory
+RUN mkdir -p /etc/nginx/sites-enabled
+
 # Copy your Nginx site-specific configuration files to the container
 
 COPY students.poridhi.com /etc/nginx/sites-available/students.poridhi.com
@@ -147,7 +150,7 @@ In this Dockerfile:
 6. Port 80 is exposed to allow external access to the Nginx web server.
 7. Finally, we start Nginx in the foreground using `CMD` with the "daemon off;" option to keep the container running.
 
-Build  Docker image using this Dockerfile:
+Build Docker image using this Dockerfile:
 
 ```bash
 docker build -t my-nginx-image .
