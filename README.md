@@ -112,13 +112,15 @@ FROM nginx
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Create the sites-enabled directory
-RUN mkdir -p /etc/nginx/sites-enabled
+
 
 # Copy your Nginx site-specific configuration files to the container
 
 COPY students.poridhi.com /etc/nginx/sites-available/students.poridhi.com
 COPY api.students.poridhi.com /etc/nginx/sites-available/api.students.poridhi.com
+
+# Create the sites-enabled directory
+RUN mkdir -p /etc/nginx/sites-enabled
 
 # Create symbolic links for the sites in the sites-enabled directory
 
